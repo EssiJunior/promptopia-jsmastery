@@ -4,13 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { darkTheme, lightTheme } from "@/utils/theme";
+import { useTheme } from 'styled-components'
 
-const Nav = () => {
+const Nav = ({ toggleTheme }) => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  const theme = useTheme()
+
+  console.log(theme);
   useEffect(() => {
     (async () => {
       const res = await getProviders();
@@ -19,7 +24,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'>
+    <nav className='flex-between w-full mb-16 pt-3 relative'>
       <Link href='/' className='flex gap-2 flex-center'>
         <Image
           src='/assets/images/logo.svg'
@@ -28,7 +33,7 @@ const Nav = () => {
           height={30}
           className='object-contain'
         />
-        <p className='logo_text'>Promptopia</p>
+        <p className={`logo_text ${theme.colors.text}`}>Promptopia</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -80,7 +85,7 @@ const Nav = () => {
               src={session?.user.image}
               width={37}
               height={37}
-              className='rounded-full'
+              className='rounded-full border border-solid border-white'
               alt='profile'
               onClick={() => setToggleDropdown(!toggleDropdown)}
             />
@@ -131,6 +136,29 @@ const Nav = () => {
               ))}
           </>
         )}
+      </div>
+      <div className="absolute bottom-[-125%] right-0 py-2 w-10 bg-primary-orange rounded-lg flex justify-evenly items-center flex-col">
+        {
+          theme.tag === 'light' ?
+
+            <Image
+              src='/assets/theme/dark.svg'
+              alt='logo'
+              width={30}
+              height={30}
+              className='object-contain cursor-pointer'
+              onClick={() => toggleTheme(darkTheme)}
+            /> :
+            <Image
+              src='/assets/theme/light.svg'
+              alt='logo'
+              width={30}
+              height={30}
+              className='object-contain cursor-pointer'
+              onClick={() => toggleTheme(lightTheme)}
+            />
+
+        }
       </div>
     </nav>
   );

@@ -33,18 +33,18 @@ const Nav = ({ toggleTheme }) => {
           height={30}
           className='object-contain'
         />
-        <p className={`logo_text ${theme.colors.text}`}>Promptopia</p>
+        <p className={theme.tag === 'light' ? `logo_text text-black`:'logo_text text-white'}>Promptopia</p>
       </Link>
 
       {/* Desktop Navigation */}
       <div className='sm:flex hidden'>
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
-            <Link href='/create-prompt' className='black_btn'>
+            <Link href='/create-prompt' className={theme.tag === 'light' ? 'black_btn border-black bg-black text-white transition-all hover:bg-white hover:text-black ': 'black_btn border-white bg-white text-black transition-all hover:bg-black hover:text-white '}>
               Create Post
             </Link>
 
-            <button type='button' onClick={signOut} className='outline_btn'>
+            <button type='button' onClick={signOut} className={theme.tag === 'light' ? 'outline_btn border-black bg-transparent text-black hover:bg-black hover:text-white': 'outline_btn border-white text-white hover:bg-white hover:text-black' }>
               Sign Out
             </button>
 

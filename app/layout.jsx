@@ -28,10 +28,10 @@ const RootLayout = ({ children }) => {
 
                 <ThemeProvider theme={theme}>
                     <Provider>
-                        <div className="main">
-                            <div className="gradient" />
+                        <div className={theme.tag === 'light' ? `main bg-[#F2F2F2]`:'main-dark bg-[#171717]'}>
+                            <div className={theme.tag === 'light' ? "gradient": "gradient-dark"} />
                         </div>
-                        <main className={`app ${theme.colors.bg}`}>
+                        <main className='app'>
                             <Nav toggleTheme={toggleTheme}/>
                             {children}
                         </main>

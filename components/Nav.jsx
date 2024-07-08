@@ -68,7 +68,7 @@ const Nav = ({ toggleTheme }) => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className='black_btn'
+                  className={theme.tag === 'light' ? 'black_btn border-black bg-black text-white transition-all hover:bg-white hover:text-black ': 'black_btn border-white bg-white text-black transition-all hover:bg-black hover:text-white '}
                 >
                   Sign in
                 </button>

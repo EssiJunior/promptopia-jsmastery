@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
+import { useTheme } from "styled-components";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -19,6 +20,8 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 const Feed = () => {
+  const theme = useTheme()
+
   const [allPosts, setAllPosts] = useState([]);
 
   // Search states
@@ -76,7 +79,7 @@ const Feed = () => {
           value={searchText}
           onChange={handleSearchChange}
           required
-          className='search_input peer'
+          className={theme.tag === 'light' ? 'search_input peer border-gray-200 bg-white focus:border-black': 'search_input peer border-gray-800 bg-black focus:border-white text-white'}
         />
       </form>
 

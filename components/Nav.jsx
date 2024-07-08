@@ -15,7 +15,6 @@ const Nav = ({ toggleTheme }) => {
 
   const theme = useTheme()
 
-  console.log(theme);
   useEffect(() => {
     (async () => {
       const res = await getProviders();

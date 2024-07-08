@@ -18,7 +18,6 @@ const RootLayout = ({ children }) => {
 
     // Theme toggler
     const toggleTheme = (theme) => {
-        console.log(theme);
         setTheme(theme);
     };
 

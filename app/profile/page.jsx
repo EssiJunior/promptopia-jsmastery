@@ -13,6 +13,7 @@ const MyProfile = () => {
   const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
+    console.log(session);
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
@@ -20,7 +21,8 @@ const MyProfile = () => {
       setMyPosts(data);
     };
 
-    if (session?.user.id) fetchPosts();
+    if (session?.user.id) fetchPosts()
+    else router.push('/')
   }, [session?.user.id]);
 
   const handleEdit = (post) => {
